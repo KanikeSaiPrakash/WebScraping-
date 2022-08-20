@@ -64,3 +64,82 @@ for paras in soup.find_all('p'):
 # Common is to get text from the doc.
 
 print(soup.get_text())
+
+# -------------------------------------------Basics are done ------------------------
+
+# Tag:
+#  
+
+soup1 = BeautifulSoup('<b class="boldest">Extremely bold</b>', "html.parser")
+tag = soup1.b
+print("type of tag", type(tag)) # type of tag
+
+print(soup1.b.name) 
+
+tag.name = "blockquote" # changing tag name by assigning a new value
+
+print(tag)
+
+# Attributes, can be accessed as dict
+
+print(tag['class'])
+
+# can access the dictionary directly as .attrs
+
+print(tag.attrs)
+
+# add, remove, modify tag's attibutes. as tag is a dictionary.
+
+tag['class'] = 'verybold'
+
+print(tag['class'])
+
+tag['another_attribute'] = 1
+
+print(tag)
+
+# del 
+
+del tag['class']
+del tag['another_attribute'] 
+
+print(tag)
+
+print(tag.get('class'))
+
+# multi values attributes. as a list.
+
+# The most common multi valued attribute is 'class', that this 
+# can have more than one css class, others include rel, rev, accept-charset, 
+# headers, accesskey. 
+
+css_soup = BeautifulSoup('<p class="body strikeout"></p>', 'html.parser')
+
+print(css_soup.p['class'])
+
+
+# not tall will gives the list as it has a space. 
+
+id_soup = BeautifulSoup('<p id="my id"></p>', 'html.parser')
+print(id_soup.p['id'])
+
+# this can be disable 
+css_soup = BeautifulSoup('<p class="body strikeout"></p>', 'html.parser', multi_valued_attributes=None)
+
+print(css_soup.p['class'])
+
+# use get_attribute_list
+
+print(css_soup.p.get_attribute_list('class'))
+
+# for xml there are no multivalues lists
+
+
+xml_soup = BeautifulSoup('<p class="body strikeout"></p>', 'xml')
+print(xml_soup.p['class'])
+
+# you can configure this using multi_valued_attribute argument as 
+# class is multi.
+class_is_multi= { '*' : 'class'}
+xml_soup = BeautifulSoup('<p class="body strikeout"></p>', 'xml', multi_valued_attributes=class_is_multi)
+print(xml_soup.p['class'])

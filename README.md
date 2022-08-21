@@ -36,3 +36,21 @@ soup = BeautifulSoup("<html>a web page</html>", "html.parser")
 ```
 
 > First the document is converted to unicode, and HTML entities are converted to Unicode characters.
+
+
+----------------------------
+## Requests module to GET, POST, PUT, UPDATE etc.
+
+> Here using request module to get the content of the webpage and parse through the html.parser in BeautifulSoup.
+
+_Here in the file **requests_bs4.py** has the code of following._
+
+- URL of any website and getting the web content through 
+requests.get method and parsing thorugh bs4
+- Text extraction
+- links extraction
+- Image extraction
+- Titles extraction (same domain of different pages or different urls)
+- Save the output in CSV file. 
+
+---------------------
